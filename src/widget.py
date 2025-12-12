@@ -23,5 +23,5 @@ card_info = "Счет 64686473678894779589"
 date = "2024-03-11T02:26:18.671407"
 
 if __name__ == "__main__":
-    print(mask_account_card(card_info))
+    mask_account_card(card_info)
     get_date(date)
