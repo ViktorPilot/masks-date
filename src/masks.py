@@ -15,5 +15,5 @@ card_number = 7000792289606361
 count_number = 73654108430135874305
 
 if __name__ == "__main__":
-    print(get_mask_card_number(card_number))
-    print(get_mask_account(count_number))
+    get_mask_card_number(card_number)
+    get_mask_account(count_number)
