@@ -19,9 +19,8 @@ def get_date(card_date: str) -> str:
     return f"{card_date[8:10]}.{card_date[5:7]}.{card_date[:4]}"
 
 
-card_info = "Счет 64686473678894779589"
-date = "2024-03-11T02:26:18.671407"
-
 if __name__ == "__main__":
+    card_info = "Счет 64686473678894779589"
+    date = "2024-03-11T02:26:18.671407"
     mask_account_card(card_info)
     get_date(date)
