@@ -32,6 +32,6 @@ def get_date(card_date: str) -> str:
         raise ValueError("Неправильный ввод значений даты")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":                        # pragma: no cover
     mask_account_card("Счет 64686473678894779589")
     get_date("2024-03-12T02:26:18.671407")
