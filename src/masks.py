@@ -15,7 +15,7 @@ def get_mask_account(count_number_: str) -> str:
     if len(count_number_) != 20:
         raise ValueError("Неправильное количество символов номера счета")
     if not isinstance(int(count_number_), int):
-        raise ValueError
+        raise ValueError("Неправильный тип символов номера счета")
     return f"**{count_number_[-4:]}"
 
 
