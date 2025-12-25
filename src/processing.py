@@ -11,7 +11,7 @@ def sort_by_date(list_of_dict: list[dict], type_sort: bool = True) -> list[dict]
     return sorted(list_of_dict, key=lambda list_date: list_date.get("date", "")[:10], reverse=type_sort)
 
 
-if __name__ == "__main__":              # pragma: no cover
+if __name__ == "__main__":  # pragma: no cover
     filter_by_state(
         [
             {"id": 41428829, "state": "EXECUTED", "date": "2019-07-03T18:35:29.512364"},
