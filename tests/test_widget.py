@@ -23,7 +23,7 @@ def test_mask_account_card_positive(data_card: str, result: str) -> None:
 )
 def test_mask_account_card_short_large_num(data_card: str) -> None:
     """Проверка работы функции, вызывающей исключение при вводе номера карты или счета
-    с количеством символов отличным от заданного"""
+    с количеством символов отличным от заданных значений"""
     with pytest.raises(ValueError):
         widget.mask_account_card(data_card)
 
@@ -34,7 +34,7 @@ def empty_num() -> str:
 
 
 def test_mask_account_card_empty_num(empty_num: str) -> None:
-    """Проверка работы функции, вызывающей исключение при вводе пустых данных"""
+    """Проверка работы функции, вызывающей исключение при вводе пустой строки"""
     with pytest.raises(ValueError):
         widget.mask_account_card(empty_num)
 
