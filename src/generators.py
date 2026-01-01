@@ -1,7 +1,7 @@
 def filter_by_currency(transactions_: list[dict], type_currency: str) -> iter:
     """Функция, возвращающая итератор с заданным значением валюты"""
     return (transaction for transaction in transactions_ if
-            transaction.get("operationAmount", {}).get("currency", {}).get("name", {}) == type_currency)
+            transaction.get("operationAmount", {}).get("currency", {}).get("code", {}) == type_currency)
 
 
 def transaction_descriptions(transactions_: list[dict]) -> iter:
@@ -22,7 +22,7 @@ def card_number_generator(start: int, stop: int) -> str:
         raise TypeError("Введены значения start/stop вне возможного диапазона")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     transactions = (
         [
             {
