@@ -6,7 +6,7 @@ def filter_by_currency(transactions_: list[dict], type_currency: str) -> iter:
 
 def transaction_descriptions(transactions_: list[dict]) -> iter:
     """Функция, возвращающая описание проведенных операций"""
-    gen_transactions = (transaction.get("description") for transaction in transactions_ if
+    gen_transactions = (transaction.get("description", "") for transaction in transactions_ if
                         "description" in transaction)
     for next_transaction in gen_transactions:
         yield next_transaction
