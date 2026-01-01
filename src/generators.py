@@ -1,16 +1,19 @@
-def filter_by_currency(transactions_, type_currency):
+def filter_by_currency(transactions_: list[dict], type_currency: str) -> iter:
+    """Функция, возвращающая итератор с заданным значением валюты"""
     return (transaction for transaction in transactions_ if
             transaction.get("operationAmount", {}).get("currency", {}).get("name", {}) == type_currency)
 
 
-def transaction_descriptions(transactions_):
-    gen_transactions = (transaction.get("description", ) for transaction in transactions_ if
+def transaction_descriptions(transactions_: list[dict]) -> iter:
+    """Функция, возвращающая описание проведенных операций"""
+    gen_transactions = (transaction.get("description") for transaction in transactions_ if
                         "description" in transaction)
     for next_transaction in gen_transactions:
         yield next_transaction
 
 
-def card_number_generator(start, stop):
+def card_number_generator(start: int, stop: int) -> str:
+    """Функция, генерирующая номера карт в заданном диапазоне"""
     if 0 <= start <= 9999999999999999 and 0 <= stop <= 9999999999999999 and start < stop:
         for num in range(start, stop + 1):
             number_card = ((16 - len(str(num))) * "0") + str(num)
