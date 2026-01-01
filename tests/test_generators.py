@@ -101,3 +101,19 @@ def test_transaction_descriptions_4(usual_transactions, result):
 
 def test_transaction_descriptions_5():
     assert list(generators.transaction_descriptions([])) == []
+
+
+@pytest.mark.parametrize("start, stop, result",
+                         [(1, 3, ["0000 0000 0000 0001", "0000 0000 0000 0002", "0000 0000 0000 0003"]),
+                          (10005, 10007, ["0000 0000 0001 0005", "0000 0000 0001 0006", "0000 0000 0001 0007"]), (
+                                  9999999999999997, 9999999999999999,
+                                  ["9999 9999 9999 9997", "9999 9999 9999 9998", "9999 9999 9999 9999"])])
+def test_card_number_generator(start, stop, result):
+    assert list(generators.card_number_generator(start, stop)) == result
+
+
+@pytest.mark.parametrize("start, stop",
+                         [(9999999999999999, 10000000000000002), (5, 2), (100000000002222222, 100000000002222227)])
+def test_card_number_generator_out_of_range(start, stop):
+    with pytest.raises(ValueError):
+        list(generators.card_number_generator(start, stop))
