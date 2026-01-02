@@ -19,7 +19,7 @@ def card_number_generator(start: int, stop: int) -> str:
             number_card = ((16 - len(str(num))) * "0") + str(num)
             yield f"{number_card[:4]} {number_card[4:8]} {number_card[8:12]} {number_card[12:]}"
     else:
-        raise ValueError("Введены значения start/stop вне возможного диапазона")
+        raise ValueError("Введены значения start/stop вне допустимого диапазона")
 
 
 if __name__ == "__main__":  # pragma: no cover

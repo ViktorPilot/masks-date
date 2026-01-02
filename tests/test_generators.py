@@ -50,38 +50,46 @@ from src import generators
         "to": "Счет 14211924144426031657"
     }
 ])])
-def test_filter_by_currency(usual_transactions, type_currency, result):
+def test_filter_by_currency(usual_transactions: list[dict], type_currency: str, result: list[dict]) -> None:
+    """Проверка работы функции, возвращающей итератор с заданным значением валюты при стандартных значениях"""
     assert list(generators.filter_by_currency(usual_transactions, type_currency)) == result
 
 
-def test_filter_by_currency_not_need_code(not_need_code):
+def test_filter_by_currency_not_need_code(not_need_code: list[dict]) -> None:
+    """Проверка работы функции, при отсутствии в списке заданного типа валюты"""
     assert list(generators.filter_by_currency(not_need_code, type_currency="RUB")) == []
 
 
-def test_filter_by_currency_empty_list_rub():
+def test_filter_by_currency_empty_list_rub() -> None:
+    """Проверка работы функции, при пустом списке транзакций в валюте 'RUB'"""
     assert list(generators.filter_by_currency([], type_currency="RUB")) == []
 
 
-def test_filter_by_currency_empty_list_usd():
+def test_filter_by_currency_empty_list_usd() -> None:
+    """Проверка работы функции, при пустом списке транзакций в валюте 'USD'"""
     assert list(generators.filter_by_currency([], type_currency="USD")) == []
 
 
-def test_filter_by_currency_not_operations_usd(not_operations_usd):
+def test_filter_by_currency_not_operations_usd(not_operations_usd: list[dict]) -> None:
+    """Проверка работы функции, при отсутствии транзакций в валюте 'USD'"""
     assert list(generators.filter_by_currency(not_operations_usd, type_currency="USD")) == []
 
 
-def test_transaction_descriptions_1(one_operation):
+def test_transaction_descriptions_1(one_operation: list[dict]) -> None:
+    """Проверка работы функции, возвращающей описание операции при выполнении одной транзакции"""
     i = (generators.transaction_descriptions(one_operation))
     assert next(i) == "Перевод организации"
 
 
-def test_transaction_descriptions_2(not_operations_usd):
+def test_transaction_descriptions_2(not_operations_usd: list[dict]) -> None:
+    """Проверка работы функции, возвращающей описание операций при выполнении двух транзакций"""
     i = (generators.transaction_descriptions(not_operations_usd))
     assert next(i) == "Перевод организации"
     assert next(i) == "Перевод со счета на счет"
 
 
-def test_transaction_descriptions_3(usual_transactions):
+def test_transaction_descriptions_3(usual_transactions: list[dict]) -> None:
+    """Проверка работы функции, возвращающей описание операций при выполнении пяти транзакций"""
     i = (generators.transaction_descriptions(usual_transactions))
     assert next(i) == "Перевод организации"
     assert next(i) == "Перевод со счета на счет"
@@ -95,11 +103,13 @@ def test_transaction_descriptions_3(usual_transactions):
                                      "Перевод со счета на счет",
                                      "Перевод с карты на карту",
                                      "Перевод организации"]])
-def test_transaction_descriptions_4(usual_transactions, result):
+def test_transaction_descriptions_4(usual_transactions: list[dict], result: list[str]) -> None:
+    """Проверка работы функции, возвращающей список проведенных операций при выполнении пяти транзакций"""
     assert list(generators.transaction_descriptions(usual_transactions)) == result
 
 
-def test_transaction_descriptions_5():
+def test_transaction_descriptions_5() -> None:
+    """Проверка работы функции, при отсутствии транзакций"""
     assert list(generators.transaction_descriptions([])) == []
 
 
@@ -108,12 +118,14 @@ def test_transaction_descriptions_5():
                           (10005, 10007, ["0000 0000 0001 0005", "0000 0000 0001 0006", "0000 0000 0001 0007"]), (
                                   9999999999999997, 9999999999999999,
                                   ["9999 9999 9999 9997", "9999 9999 9999 9998", "9999 9999 9999 9999"])])
-def test_card_number_generator(start, stop, result):
+def test_card_number_generator(start: int, stop: int, result: list[str]) -> None:
+    """Проверка работы функции, генерирующей номера карт при стандартных значениях"""
     assert list(generators.card_number_generator(start, stop)) == result
 
 
 @pytest.mark.parametrize("start, stop",
                          [(9999999999999999, 10000000000000002), (5, 2), (100000000002222222, 100000000002222227)])
-def test_card_number_generator_out_of_range(start, stop):
+def test_card_number_generator_out_of_range(start: int, stop: int) -> None:
+    """Проверка работы функции, вызывающей исключение при вводе значений start/stop вне допустимого диапазона"""
     with pytest.raises(ValueError):
         list(generators.card_number_generator(start, stop))
