@@ -4,11 +4,15 @@ from typing import Any, Callable
 
 
 def log(filename: str | None = None) -> Callable:
-    """Функция-декоратор, записывающая log в файл или в консоль при вызове функции"""
+    """Функция-декоратор, передающая в функцию inner параметр, определяющий
+    логирование в консоль или в файл mylog.txt"""
 
     def wrapper(func: Callable) -> Callable:
+        """Функция-обертка передающая логируемую оригинальную функцию в функцию inner"""
+
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
+            """Функция, выводящая в консоль или записывающая в файл mylog.txt лог работы оригинальной функции"""
             try:
                 result = func(*args, **kwargs)
                 if filename:
@@ -33,9 +37,11 @@ if __name__ == "__main__":  # pragma: no cover
     path_to_dir = os.path.dirname(__file__)
     path_to_mylog = os.path.join(os.path.dirname(path_to_dir), "mylog.txt")
 
+
     @log(filename=path_to_mylog)
     def my_function(x: int | float, y: int | float) -> int | float:
         """Функция, суммирующая два числа"""
         return x + y
+
 
     my_function(1, 2)
