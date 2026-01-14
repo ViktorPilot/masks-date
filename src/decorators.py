@@ -29,7 +29,7 @@ def log(filename: str | None = None) -> Callable:
     return wrapper
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     path_to_dir = os.path.dirname(__file__)
     path_to_mylog = os.path.join(os.path.dirname(path_to_dir), "mylog.txt")
 
