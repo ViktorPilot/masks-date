@@ -48,7 +48,7 @@ def my_function_2(x: Any, y: Any) -> Any:
 @pytest.mark.parametrize("x, y, result", [(1, 2, "my_function_2 ok\n"), (1.2, 2.3, "my_function_2 ok\n")])
 def test_log_positive_to_mylog(x: int | float, y: int | float, result: str) -> None:
     """Тестирование работы декоратора при вводе целых чисел и чисел с плавающей запятой
-    с выводом лога в файл mylog.txt"""
+    с записью лога в файл mylog.txt"""
     my_function_2(x, y)
     with open(path_to_mylog, "r", encoding="UTF-8") as file:
         log_in_mylog = file.readlines()
@@ -69,7 +69,7 @@ def test_log_positive_to_mylog(x: int | float, y: int | float, result: str) -> N
 )
 def test_log_negative_to_mylog(x: Any, y: Any, result: str) -> None:
     """Тестирование работы декоратора при вводе аргументов, отличных от целых чисел
-    и чисел с плавающей запятой с выводом лога в файл mylog.txt"""
+    и чисел с плавающей запятой с записью лога в файл mylog.txt"""
     my_function_2(x, y)
     with open(path_to_mylog, "r", encoding="UTF-8") as file:
         log_in_mylog = file.readlines()

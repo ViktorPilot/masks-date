@@ -5,10 +5,10 @@ from typing import Any, Callable
 
 def log(filename: str | None = None) -> Callable:
     """Функция-декоратор, передающая в функцию inner параметр, определяющий
-    логирование в консоль или в файл mylog.txt"""
+    вывод лога в консоль или в файл mylog.txt"""
 
     def wrapper(func: Callable) -> Callable:
-        """Функция-обертка передающая логируемую оригинальную функцию в функцию inner"""
+        """Функция-обертка передающая декорируемую оригинальную функцию в функцию inner"""
 
         @wraps(func)
         def inner(*args: Any, **kwargs: Any) -> Any:
