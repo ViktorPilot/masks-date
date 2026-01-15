@@ -37,11 +37,9 @@ if __name__ == "__main__":  # pragma: no cover
     path_to_dir = os.path.dirname(__file__)
     path_to_mylog = os.path.join(os.path.dirname(path_to_dir), "mylog.txt")
 
-
     @log(filename=path_to_mylog)
     def my_function(x: int | float, y: int | float) -> int | float:
         """Функция, суммирующая два числа"""
         return x + y
-
 
     my_function(1, 2)
