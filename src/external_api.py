@@ -10,7 +10,7 @@ headers = {"apikey": os.getenv("APIKEY")}
 def get_amount_transactions(transaction: dict) -> str | float:
     """Функция, возвращающая сумму транзакции в рублях и обращающаяся к внешнему API для конвертации
     валюты USD и EUR в рубли"""
-    if transaction != {} and type(transaction) == dict:
+    if transaction != {} and type(transaction) is dict:
         code = transaction.get("operationAmount", {}).get("currency", {}).get("code", "")
         try:
             amount = float(transaction.get("operationAmount", {}).get("amount"))

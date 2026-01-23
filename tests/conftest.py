@@ -151,6 +151,7 @@ def get_amount_transactions_rub() -> dict:
         "to": "Счет 64686473678894779589",
     }
 
+
 @pytest.fixture
 def not_amount() -> dict:
     return {
@@ -162,6 +163,7 @@ def not_amount() -> dict:
         "from": "Maestro 1596837868705199",
         "to": "Счет 64686473678894779589",
     }
+
 
 @pytest.fixture
 def invalid_type_amount() -> dict:
@@ -175,6 +177,7 @@ def invalid_type_amount() -> dict:
         "to": "Счет 64686473678894779589",
     }
 
+
 @pytest.fixture
 def get_amount_transactions_usd() -> dict:
     return {
@@ -186,6 +189,7 @@ def get_amount_transactions_usd() -> dict:
         "from": "Maestro 1596837868705199",
         "to": "Счет 64686473678894779589",
     }
+
 
 @pytest.fixture
 def invalid_code_currency() -> dict:
