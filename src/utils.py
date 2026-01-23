@@ -15,5 +15,5 @@ def get_dict_transactions(path_to_operations: str) -> list[None | dict]:
     return list_operations
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(get_dict_transactions(os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/operations.json"))))
