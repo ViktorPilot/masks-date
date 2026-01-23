@@ -10,31 +10,33 @@ headers = {"apikey": os.getenv("APIKEY")}
 def get_amount_transactions(transaction: dict) -> str | float:
     """Функция, возвращающая сумму транзакции в рублях и обращающаяся к внешнему API для конвертации
     валюты USD и EUR в рубли"""
-    code = transaction.get("operationAmount", {}).get("currency", {}).get("code", "")
-    try:
-        amount = float(transaction.get("operationAmount", {}).get("amount"))
-    except TypeError:
-        return "Отсутствует сумма транзакции"
-    except ValueError:
-        return "Неправильный тип данных суммы транзакции"
-    if code == "RUB":
-        return amount
-    elif code in ["USD", "EUR"]:
-        from_ = code
-        to = "RUB"
-        response = requests.get(
-            f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from_}&amount={amount}",
-            headers=headers,
-        )
-        if response.status_code == 200:
-            amount = float(response.json().get("result"))
-        else:
-            return f"При конвертации валюты произошла ошибка {response.status_code}"
-        return amount
-    return "В транзакции не указан или указан неверно тип валюты"
+    if transaction != {} and type(transaction) == dict:
+        code = transaction.get("operationAmount", {}).get("currency", {}).get("code", "")
+        try:
+            amount = float(transaction.get("operationAmount", {}).get("amount"))
+        except TypeError:
+            return "Отсутствует сумма транзакции"
+        except ValueError:
+            return "Неправильный тип данных суммы транзакции"
+        if code == "RUB":
+            return amount
+        elif code in ["USD", "EUR"]:
+            from_ = code
+            to = "RUB"
+            response = requests.get(
+                f"https://api.apilayer.com/exchangerates_data/convert?to={to}&from={from_}&amount={amount}",
+                headers=headers,
+            )
+            if response.status_code == 200:
+                amount = float(response.json().get("result"))
+                return amount
+            else:
+                return f"При конвертации валюты произошла ошибка {response.status_code}"
+        return "В транзакции не указан или указан неверно тип валюты"
+    return "Отсутствуют корректные данные по транзакции"
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(
         get_amount_transactions(
             {
