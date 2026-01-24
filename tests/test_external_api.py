@@ -41,6 +41,6 @@ def test_get_amount_transactions_usd(mock_requests: unittest.mock.Mock, get_amou
 def test_get_amount_transactions_stat_code_not_200(
     mock_requests: unittest.mock.Mock, get_amount_transactions_usd: dict
 ) -> None:
-    """Тестирование функции при ошибках, связанных с запросом на сервер"""
+    """Тестирование функции при ошибках, связанных с запросом данных с сервера"""
     mock_requests.return_value.status_code = 300
     assert not get_amount_transactions(get_amount_transactions_usd)

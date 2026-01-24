@@ -5,7 +5,7 @@ from src.utils import get_dict_transactions
 
 
 def test_get_dict_transactions_valid(get_dict_transactions_valid: list[dict]) -> None:
-    """Тестирование функции, преобразующей json-файл с транзакциями в список при стандартных условиях"""
+    """Тестирование функции, преобразующей json-файл с транзакциями в список при стандартных значениях"""
     with patch("json.load") as mock_json:
         mock_json.return_value = get_dict_transactions_valid
         assert get_dict_transactions(
