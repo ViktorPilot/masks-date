@@ -16,10 +16,10 @@ def get_amount_transactions(transaction: dict) -> str | float:
             amount = float(transaction.get("operationAmount", {}).get("amount"))
         except TypeError:
             print("Отсутствует сумма транзакции")
-            return False
+            return 0.0
         except ValueError:
             print("Неправильный тип данных суммы транзакции")
-            return False
+            return 0.0
         if code == "RUB":
             return amount
         elif code in ["USD", "EUR"]:
@@ -34,11 +34,11 @@ def get_amount_transactions(transaction: dict) -> str | float:
                 return amount
             else:
                 print(f"При конвертации валюты произошла ошибка {response.status_code}")
-                return False
+                return 0.0
         print("В транзакции не указан или указан неверно тип валюты")
-        return False
+        return 0.0
     print("Отсутствуют корректные данные по транзакции")
-    return False
+    return 0.0
 
 
 if __name__ == "__main__":  # pragma: no cover

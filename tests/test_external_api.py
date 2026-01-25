@@ -11,22 +11,22 @@ def test_get_amount_transactions_get_rub(get_amount_transactions_rub: dict) -> N
 
 def test_get_amount_transactions_not_amount(not_amount: dict) -> None:
     """Тестирование функции при отсутствии суммы транзакции"""
-    assert not get_amount_transactions(not_amount)
+    assert get_amount_transactions(not_amount) == 0.0
 
 
 def test_get_amount_transactions_invalid_type_amount(invalid_type_amount: dict) -> None:
     """Тестирование функции с неправильным типом данных суммы транзакции"""
-    assert not get_amount_transactions(invalid_type_amount)
+    assert get_amount_transactions(invalid_type_amount) == 0.0
 
 
 def test_get_amount_transactions_invalid_code_currency(invalid_code_currency: dict) -> None:
     """Тестирование функции с кодом валюты, отличным от USD, EUR, RUB"""
-    assert not get_amount_transactions(invalid_code_currency)
+    assert get_amount_transactions(invalid_code_currency) == 0.0
 
 
 def test_get_amount_transactions_not_list_and_empty_dict() -> None:
     """Тестирование функции с пустым словарем"""
-    assert not get_amount_transactions({})
+    assert get_amount_transactions({}) == 0.0
 
 
 @patch("requests.get")
@@ -43,4 +43,4 @@ def test_get_amount_transactions_stat_code_not_200(
 ) -> None:
     """Тестирование функции при ошибках, связанных с запросом данных с сервера"""
     mock_requests.return_value.status_code = 300
-    assert not get_amount_transactions(get_amount_transactions_usd)
+    assert get_amount_transactions(get_amount_transactions_usd) == 0.0
