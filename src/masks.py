@@ -1,6 +1,19 @@
-from src.log import create_logger_masks
+import logging
+import os
 
-logger_masks = create_logger_masks()
+PATH_TO_ROOT = os.path.dirname(os.path.dirname(__file__))
+
+if not os.path.exists(os.path.join(PATH_TO_ROOT, "logs")):
+    os.makedirs(os.path.join(PATH_TO_ROOT, "logs"))
+logger_masks = logging.getLogger("masks")
+logger_masks.setLevel(logging.DEBUG)
+
+file_handler_masks = logging.FileHandler(
+    os.path.join(PATH_TO_ROOT, "logs/logger_masks.log"), encoding="utf-8", mode="w"
+)
+file_formatter_masks = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+file_handler_masks.setFormatter(file_formatter_masks)
+logger_masks.addHandler(file_handler_masks)
 
 
 def get_mask_card_number(card_number_: str) -> str:

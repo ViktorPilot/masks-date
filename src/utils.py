@@ -1,9 +1,20 @@
 import json
+import logging
 import os
 
-from src.log import create_logger_utils
+PATH_TO_ROOT = os.path.dirname(os.path.dirname(__file__))
 
-logger_utils = create_logger_utils()
+if not os.path.exists(os.path.join(PATH_TO_ROOT, "logs")):
+    os.makedirs(os.path.join(PATH_TO_ROOT, "logs"))
+logger_utils = logging.getLogger("utils")
+logger_utils.setLevel(logging.DEBUG)
+
+file_handler_utils = logging.FileHandler(
+    os.path.join(PATH_TO_ROOT, "logs/logger_utils.log"), encoding="utf-8", mode="w"
+)
+file_formatter_utils = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
+file_handler_utils.setFormatter(file_formatter_utils)
+logger_utils.addHandler(file_handler_utils)
 
 
 def get_dict_transactions(path_to_operations: str) -> list[None | dict]:
