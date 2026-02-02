@@ -99,7 +99,7 @@
 
 1. В Python файле `finance_operations.py` для функции `get_operation_csv` необходимо указать путь к csv-файлу
    `transactions.csv`, а для функции `get_operation_excel` путь к xlsx-файлу `transactions_excel.xlsx`.
-2. Запустить выполнение программы командой `finance_operations.py`.
+2. Запустить выполнение программы командой `python src\finance_operations.py`.
 3. В результате получим два списка словарей транзакций, конвертированные из `csv` и `xlsx` файлов.
 
 ## Тестирование:
