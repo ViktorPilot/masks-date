@@ -6,42 +6,51 @@ import pandas as pd
 
 PATH_TO_DIR = os.path.dirname(os.path.dirname(__file__))
 
-logging.basicConfig(filename=os.path.join(PATH_TO_DIR, "logs/logger_finance_op.log"), filemode="w",
-                    level=logging.INFO, encoding="utf-8",
-                    format="%(asctime)s - %(name)s (функция: %(funcName)s) - %(levelname)s: %(message)s")
+logging.basicConfig(
+    filename=os.path.join(PATH_TO_DIR, "logs/logger_finance_op.log"),
+    filemode="w",
+    level=logging.INFO,
+    encoding="utf-8",
+    format="%(asctime)s - %(name)s (функция: %(funcName)s) - %(levelname)s: %(message)s",
+)
 
-logger_csv = logging.getLogger("finance_operations_csv")
+logger = logging.getLogger("finance_operations")
 
 
 def get_operation_csv(path_to_csv: str) -> list[dict]:
     """Функция, считывающая с файла .csv данные по банковским операциям и возвращающая
     список словарей с транзакциями"""
-    logger_csv.info("Начало работы функции...")
+    logger.info("Начало работы функции...")
     if os.path.exists(path_to_csv):
         try:
             with open(path_to_csv, "r", encoding="utf-8", newline="") as file:
                 reader = csv.DictReader(file, delimiter=";")
+                logger.info("Файл успешно прочитан.")
+                logger.info("Файл успешно конвертирован в список транзакций. Завершение работы функции.")
                 return list(reader)
         except Exception as e:
-            print(f"Ошибка при чтении файла: {e}")
+            logger.error(f"Ошибка при чтении файла: {e}. Завершение работы функции.")
             return []
     else:
-        print(f"Файл {os.path.basename(path_to_csv)} не найден")
+        logger.error(f"Файл {os.path.basename(path_to_csv)} не найден. Завершение работы функции.")
         return []
 
 
 def get_operation_excel(path_to_xlsx: str) -> list[dict]:
     """Функция, считывающая с файла .xlsx данные по банковским операциям и возвращающая
     список словарей с транзакциями"""
+    logger.info("Начало работы функции...")
     if os.path.exists(path_to_xlsx):
         try:
             df = pd.read_excel(path_to_xlsx).to_dict(orient="records")
+            logger.info("Файл успешно прочитан.")
+            logger.info("Файл успешно конвертирован в список транзакций. Завершение работы функции.")
             return df
         except Exception as e:
-            print(f"Ошибка при чтении файла: {e}")
+            logger.error(f"Ошибка при чтении файла: {e}. Завершение работы функции.")
             return []
     else:
-        print(f"Файл {os.path.basename(path_to_xlsx)} не найден")
+        logger.error(f"Файл {os.path.basename(path_to_xlsx)} не найден. Завершение работы функции.")
         return []
 
 
