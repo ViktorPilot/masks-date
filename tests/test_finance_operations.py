@@ -47,26 +47,21 @@ def test_get_operation_csv_not_found(mock_dict: Mock, valid_get_operation_csv: T
     """Тестирование работы функции, конвертирующей файл с транзакциями .csv в список
     при отсутствии файла с транзакциями"""
     mock_dict.return_value = valid_get_operation_csv
-    assert get_operation_csv(os.path.join(PATH_TO_DIR, "data/trans.csv")) == "Файл trans.csv не найден"
+    assert get_operation_csv(os.path.join(PATH_TO_DIR, "data/trans.csv")) == []
 
 
 @patch("pandas.read_csv")
 def test_get_operation_csv_error(mock_df: Mock, valid_get_operation_csv: Tuple) -> None:
     """Тестирование работы функции, конвертирующей файл с транзакциями .csv в список при ошибке в чтении файла"""
     mock_df.return_value = valid_get_operation_csv
-    assert get_operation_csv(os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx")) == (
-        "Ошибка при чтении файла: 'utf-8' codec ' 'can't decode bytes in position 10-11: ' 'invalid continuation byte"
-    )
+    assert get_operation_csv(os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx")) == []
 
 
 @patch("pandas.read_excel")
 def test_get_operation_excel_error(mock_df: Mock, valid_get_operation_excel: list[dict]) -> None:
     """Тестирование работы функции, конвертирующей файл с транзакциями .xlsx в список при ошибке в чтении файла"""
     mock_df.return_value = valid_get_operation_excel
-    assert (
-        get_operation_excel(os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx"))
-        == "Ошибка при чтении файла: 'list' object has no attribute 'to_dict'"
-    )
+    assert get_operation_excel(os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx")) == []
 
 
 @patch("pandas.read_excel")
@@ -74,7 +69,7 @@ def test_get_operation_excel_not_found(mock_df: Mock, valid_get_operation_excel:
     """Тестирование работы функции, конвертирующей файл с транзакциями .xlsx в список
     при отсутствии файла с транзакциями"""
     mock_df.return_value = valid_get_operation_excel
-    assert get_operation_excel(os.path.join(PATH_TO_DIR, "data/trans_excel.xlsx")) == "Файл trans_excel.xlsx не найден"
+    assert get_operation_excel(os.path.join(PATH_TO_DIR, "data/trans_excel.xlsx")) == []
 
 
 @patch("pandas.read_excel")
