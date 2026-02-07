@@ -3,6 +3,7 @@ from src.finance_operations import get_operation_csv, path_to_transactions_csv, 
 from src.process_bank_transactions import process_bank_search
 from src.processing import filter_by_state, sort_by_date
 from src.utils import get_dict_transactions, path_to_operation
+from src.widget import get_date, mask_account_card
 
 
 def main():
@@ -77,7 +78,8 @@ def main():
         choose_sort_currency = input("Пользователь: ").strip().lower()
         if choose_sort_currency == "да":
             if choose_type_file == 1:
-                sort_currency = [x for x in sort_increase if x.get('operationAmount', {}).get('currency', {}).get('code',{}) == 'RUB']
+                sort_currency = [x for x in sort_increase if
+                                 x.get('operationAmount', {}).get('currency', {}).get('code', {}) == 'RUB']
                 break
             elif choose_type_file in [2, 3]:
                 sort_currency = [x for x in sort_increase if x.get('currency_code') == 'RUB']
@@ -87,7 +89,7 @@ def main():
             break
         else:
             print("Программа: Введен неверный ответ.")
-    print(sort_currency)
+
     # Фильтрация данных по определенному слову в описании
     while True:
         print("Отфильтровать список транзакций по определенному слову в описании? Да/Нет")
@@ -103,9 +105,35 @@ def main():
         else:
             print("Программа: Введен неверный ответ.")
     print(sort_word)
-    print("Программа: Распечатываю итоговый список транзакций...")
 
+    print("Программа: Распечатываю итоговый список транзакций...")
+    if not sort_word:
+        return "Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации"
+    else:
+        print(f"Всего банковских операций в выборке: {len(sort_word)}\n")
+        if choose_type_file == 1:
+            for transaction in sort_word:
+                print(f"{get_date(transaction.get("date", ""))} {transaction.get('description', {})}")
+                if transaction.get("from") and transaction.get("to"):
+                    print(f"{mask_account_card(transaction.get("from"))} -> {mask_account_card(transaction.get("to"))}")
+                elif transaction.get("from"):
+                    print(f"{mask_account_card(transaction.get("from"))}")
+                elif transaction.get("to"):
+                    print(f"{mask_account_card(transaction.get("to"))}")
+                print(
+                    f"Сумма: {transaction.get('operationAmount', {}).get('amount', {})} {transaction.get('operationAmount', {}).get('currency', {}).get('name', "")}\n")
 
 
 if __name__ == "__main__":
     print(main())
+
+# Программа:
+# Всего банковских операций в выборке: 4
+#
+# 08.12.2019 Открытие вклада
+# Счет **4321
+# Сумма: 40542 руб.
+#
+# 12.11.2019 Перевод с карты на карту
+# MasterCard 7771 27** **** 3727 -> Visa Platinum 1293 38** **** 9203
+# Сумма: 130 USD
