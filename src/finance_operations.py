@@ -5,6 +5,8 @@ import os.path
 import pandas as pd
 
 PATH_TO_DIR = os.path.dirname(os.path.dirname(__file__))
+path_to_transactions_csv = os.path.join(PATH_TO_DIR, "data/transactions.csv")
+path_to_transactions_excel = os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx")
 
 logging.basicConfig(
     filename=os.path.join(PATH_TO_DIR, "logs/logger_finance_op.log"),
@@ -55,5 +57,5 @@ def get_operation_excel(path_to_xlsx: str) -> list[dict]:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    print(get_operation_csv(os.path.join(PATH_TO_DIR, "data/transactions.csv")))
-    print(get_operation_excel(os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx")))
+    print(get_operation_csv(path_to_transactions_csv))
+    print(get_operation_excel(path_to_transactions_excel))
