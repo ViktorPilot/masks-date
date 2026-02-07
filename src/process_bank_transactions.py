@@ -7,21 +7,22 @@ PATH_TO_DIR = os.path.dirname(os.path.dirname(__file__))
 
 PATH_TO_LOGGER = os.path.join(PATH_TO_DIR, "logs/logger_process.log")
 
-logging.basicConfig(
-    filename=PATH_TO_LOGGER,
-    filemode="w",
-    format="%(asctime)s - %(name)s (функция: %(funcName)s) - %(levelname)s: %(message)s",
-    level=logging.INFO,
-    encoding="utf-8",
+logger_pbt = logging.getLogger("process_bank_transactions")
+logger_pbt.setLevel(logging.DEBUG)
+
+file_handler_pbt = logging.FileHandler(
+    os.path.join(PATH_TO_LOGGER), encoding="utf-8", mode="w"
 )
-logger = logging.getLogger("process_bank_transactions")
+file_formatter_pbt = logging.Formatter("%(asctime)s - %(name)s (функция: %(funcName)s) - %(levelname)s: %(message)s")
+file_handler_pbt.setFormatter(file_formatter_pbt)
+logger_pbt.addHandler(file_handler_pbt)
 
 
 def process_bank_search(data: list[dict], search: str) -> list[dict]:
     """Функция, фильтрующая список транзакций по описанию категории"""
-    logger.info("Начало работы функции..")
+    logger_pbt.info("Начало работы функции..")
     list_filtred = []
-    logger.info("Создание списка отфильтрованных транзакций.")
+    logger_pbt.info("Создание списка отфильтрованных транзакций.")
     for operation in data:
         value_decription = operation.get("description", "")
         if type(value_decription) is str:
@@ -29,21 +30,22 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
             if result:
                 list_filtred.append(operation)
         else:
-            logger.error(f"Транзакция id: {operation.get('id', '')}. Тип данных 'description' отличается от строки.")
+            logger_pbt.error(
+                f"Транзакция id: {operation.get('id', '')}. Тип данных 'description' отличается от строки.")
             continue
-    logger.info("Список отфильтрованных транзакций создан. Завершение работы функции.")
+    logger_pbt.info("Список отфильтрованных транзакций создан. Завершение работы функции.")
     return list_filtred
 
 
 def process_bank_operations(data: list[dict], categories: list) -> dict:
     """Функция, вычисляющая количество транзакций по заданным категориям"""
-    logger.info("Начало работы функции..")
+    logger_pbt.info("Начало работы функции..")
     list_filtred_cat = [
         operation.get("description", "") for operation in data if operation.get("description", "") in categories
     ]
-    logger.info("Список с категориями всех проведенных транзакций создан.")
+    logger_pbt.info("Список с категориями всех проведенных транзакций создан.")
     counter = collections.Counter(list_filtred_cat)
-    logger.info("Выполнен подсчет категорий транзакций. Завершение работы функции.")
+    logger_pbt.info("Выполнен подсчет категорий транзакций. Завершение работы функции.")
     return dict(counter)
 
 

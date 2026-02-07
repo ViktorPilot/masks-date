@@ -6,7 +6,8 @@ from src.utils import get_dict_transactions, path_to_operation
 from src.widget import get_date, mask_account_card
 
 
-def main():
+def main() -> None:
+    """Функция, связывающая функциональность всех модулей продукта"""
     print("Программа: Привет! Добро пожаловать в программу работы с банковскими транзакциями.")
 
     # Выбор типа файла
@@ -30,7 +31,7 @@ def main():
     elif choose_type_file == 2:
         print("Программа: Для обработки выбран CSV-файл.")
         type_file = get_operation_csv(path_to_transactions_csv)
-    elif choose_type_file == 3:
+    else:
         print("Программа: Для обработки выбран XLSX-файл.")
         type_file = get_operation_excel(path_to_transactions_excel)
 
@@ -107,13 +108,15 @@ def main():
     print(sort_word)
 
     print("Программа: Распечатываю итоговый список транзакций...")
+
+    # Вывод результатов
     if not sort_word:
-        return "Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации"
+        print("Программа: Не найдено ни одной транзакции, подходящей под ваши условия фильтрации")
     else:
         print(f"Всего банковских операций в выборке: {len(sort_word)}\n")
-        if choose_type_file == 1:
-            for transaction in sort_word:
-                print(f"{get_date(transaction.get("date", ""))} {transaction.get('description', {})}")
+        for transaction in sort_word:
+            print(f"{get_date(transaction.get("date", ""))} {transaction.get('description', {})}")
+            if choose_type_file == 1:
                 if transaction.get("from") and transaction.get("to"):
                     print(f"{mask_account_card(transaction.get("from"))} -> {mask_account_card(transaction.get("to"))}")
                 elif transaction.get("from"):
@@ -122,18 +125,15 @@ def main():
                     print(f"{mask_account_card(transaction.get("to"))}")
                 print(
                     f"Сумма: {transaction.get('operationAmount', {}).get('amount', {})} {transaction.get('operationAmount', {}).get('currency', {}).get('name', "")}\n")
+            else:
+                if transaction.get("from") and transaction.get("to"):
+                    print(f"{mask_account_card(transaction.get("from"))} -> {mask_account_card(transaction.get("to"))}")
+                elif transaction.get("from"):
+                    print(f"{mask_account_card(transaction.get("from"))}")
+                elif transaction.get("to"):
+                    print(f"{mask_account_card(transaction.get("to"))}")
+                print(f"Сумма: {transaction.get('amount', "")} {transaction.get('currency_name', "")}\n")
 
 
 if __name__ == "__main__":
-    print(main())
-
-# Программа:
-# Всего банковских операций в выборке: 4
-#
-# 08.12.2019 Открытие вклада
-# Счет **4321
-# Сумма: 40542 руб.
-#
-# 12.11.2019 Перевод с карты на карту
-# MasterCard 7771 27** **** 3727 -> Visa Platinum 1293 38** **** 9203
-# Сумма: 130 USD
+    main()
