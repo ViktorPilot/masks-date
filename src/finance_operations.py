@@ -19,7 +19,7 @@ file_handler_fo.setFormatter(file_formatter_fo)
 logger_fo.addHandler(file_handler_fo)
 
 
-def get_operation_csv(path_to_csv: str) -> list[dict]:
+def get_operation_csv(path_to_csv: str) -> list[dict | None]:
     """Функция, считывающая с файла .csv данные по банковским операциям и возвращающая
     список словарей с транзакциями"""
     logger_fo.info("Начало работы функции...")
@@ -38,7 +38,7 @@ def get_operation_csv(path_to_csv: str) -> list[dict]:
         return []
 
 
-def get_operation_excel(path_to_xlsx: str) -> list[dict]:
+def get_operation_excel(path_to_xlsx: str) -> list[dict | None]:
     """Функция, считывающая с файла .xlsx данные по банковским операциям и возвращающая
     список словарей с транзакциями"""
     logger_fo.info("Начало работы функции...")
@@ -47,7 +47,7 @@ def get_operation_excel(path_to_xlsx: str) -> list[dict]:
             df = pd.read_excel(path_to_xlsx).fillna("").to_dict(orient="records")
             logger_fo.info("Файл успешно прочитан.")
             logger_fo.info("Файл успешно конвертирован в список транзакций. Завершение работы функции.")
-            return df
+            return list(df)
         except Exception as e:
             logger_fo.error(f"Ошибка при чтении файла: {e}. Завершение работы функции.")
             return []

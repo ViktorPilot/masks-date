@@ -10,9 +10,7 @@ PATH_TO_LOGGER = os.path.join(PATH_TO_DIR, "logs/logger_process.log")
 logger_pbt = logging.getLogger("process_bank_transactions")
 logger_pbt.setLevel(logging.DEBUG)
 
-file_handler_pbt = logging.FileHandler(
-    os.path.join(PATH_TO_LOGGER), encoding="utf-8", mode="w"
-)
+file_handler_pbt = logging.FileHandler(os.path.join(PATH_TO_LOGGER), encoding="utf-8", mode="w")
 file_formatter_pbt = logging.Formatter("%(asctime)s - %(name)s (функция: %(funcName)s) - %(levelname)s: %(message)s")
 file_handler_pbt.setFormatter(file_formatter_pbt)
 logger_pbt.addHandler(file_handler_pbt)
@@ -31,7 +29,8 @@ def process_bank_search(data: list[dict], search: str) -> list[dict]:
                 list_filtred.append(operation)
         else:
             logger_pbt.error(
-                f"Транзакция id: {operation.get('id', '')}. Тип данных 'description' отличается от строки.")
+                f"Транзакция id: {operation.get('id', '')}. Тип данных 'description' отличается от строки."
+            )
             continue
     logger_pbt.info("Список отфильтрованных транзакций создан. Завершение работы функции.")
     return list_filtred
