@@ -2,12 +2,8 @@ import logging
 import os
 from logging import getLogger
 
-from src.finance_operations import (
-    get_operation_csv,
-    get_operation_excel,
-    path_to_transactions_csv,
-    path_to_transactions_excel,
-)
+from src.finance_operations import (get_operation_csv, get_operation_excel, path_to_transactions_csv,
+                                    path_to_transactions_excel)
 from src.process_bank_transactions import process_bank_search
 from src.processing import filter_by_state, sort_by_date
 from src.utils import get_dict_transactions, path_to_operation
@@ -193,5 +189,5 @@ def main() -> list[dict]:
     return sort_word
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     print(main())
