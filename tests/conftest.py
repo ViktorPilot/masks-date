@@ -257,3 +257,392 @@ def valid_get_operation_excel() -> list[dict]:
             "description": "Перевод с карты на карту",
         },
     ]
+
+
+@pytest.fixture
+def pbs_valid() -> tuple[list[dict], str]:
+    return (
+        [
+            {
+                "id": 939719570,
+                "state": "EXECUTED",
+                "date": "2018-06-30T02:08:58.425572",
+                "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод организации",
+                "from": "Счет 75106830613657916952",
+                "to": "Счет 11776614605963066702",
+            },
+            {
+                "id": 142264268,
+                "state": "EXECUTED",
+                "date": "2019-04-04T23:20:05.206878",
+                "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод со счета на счет",
+                "from": "Счет 19708645243227258542",
+                "to": "Счет 75651667383060284188",
+            },
+            {
+                "id": 873106923,
+                "state": "EXECUTED",
+                "date": "2019-03-23T01:09:46.296404",
+                "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
+                "description": "Перевод со счета на счет",
+                "from": "Счет 44812258784861134719",
+                "to": "Счет 74489636417521191160",
+            },
+            {
+                "id": 895315941,
+                "state": "EXECUTED",
+                "date": "2018-08-19T04:27:37.904916",
+                "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод с карты на карту",
+                "from": "Visa Classic 6831982476737658",
+                "to": "Visa Platinum 8990922113665229",
+            },
+            {
+                "id": 594226727,
+                "state": "CANCELED",
+                "date": "2018-09-12T21:27:25.241689",
+                "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+                "description": "Перевод организации",
+                "from": "Visa Platinum 1246377376343588",
+                "to": "Счет 14211924144426031657",
+            },
+        ],
+        "Перевод организации",
+    )
+
+
+@pytest.fixture
+def result_pbs_valid() -> list[dict]:
+    return [
+        {
+            "id": 939719570,
+            "state": "EXECUTED",
+            "date": "2018-06-30T02:08:58.425572",
+            "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+            "description": "Перевод организации",
+            "from": "Счет 75106830613657916952",
+            "to": "Счет 11776614605963066702",
+        },
+        {
+            "id": 594226727,
+            "state": "CANCELED",
+            "date": "2018-09-12T21:27:25.241689",
+            "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Visa Platinum 1246377376343588",
+            "to": "Счет 14211924144426031657",
+        },
+    ]
+
+
+@pytest.fixture
+def pbs_not_description() -> tuple[list[dict], str]:
+    return (
+        [
+            {
+                "id": 939719570,
+                "state": "EXECUTED",
+                "date": "2018-06-30T02:08:58.425572",
+                "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+                "from": "Счет 75106830613657916952",
+                "to": "Счет 11776614605963066702",
+            },
+            {
+                "id": 594226727,
+                "state": "CANCELED",
+                "date": "2018-09-12T21:27:25.241689",
+                "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+                "from": "Visa Platinum 1246377376343588",
+                "to": "Счет 14211924144426031657",
+            },
+        ],
+        "Перевод организации",
+    )
+
+
+@pytest.fixture
+def pbs_description_not_str() -> tuple[list[dict], str]:
+    return (
+        [
+            {
+                "id": 939719570,
+                "state": "EXECUTED",
+                "date": "2018-06-30T02:08:58.425572",
+                "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+                "description": 66666666666666,
+                "from": "Счет 75106830613657916952",
+                "to": "Счет 11776614605963066702",
+            },
+            {
+                "id": 873106923,
+                "state": "EXECUTED",
+                "date": "2019-03-23T01:09:46.296404",
+                "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
+                "description": 9999999999999999,
+                "from": "Счет 44812258784861134719",
+                "to": "Счет 74489636417521191160",
+            },
+        ],
+        "Перевод со счета на счет",
+    )
+
+
+@pytest.fixture
+def pbo_valid() -> tuple[list[dict], list[str]]:
+    return (
+        [
+            {
+                "id": 939719570,
+                "state": "EXECUTED",
+                "date": "2018-06-30T02:08:58.425572",
+                "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод организации",
+                "from": "Счет 75106830613657916952",
+                "to": "Счет 11776614605963066702",
+            },
+            {
+                "id": 142264268,
+                "state": "EXECUTED",
+                "date": "2019-04-04T23:20:05.206878",
+                "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод со счета на счет",
+                "from": "Счет 19708645243227258542",
+                "to": "Счет 75651667383060284188",
+            },
+            {
+                "id": 873106923,
+                "state": "EXECUTED",
+                "date": "2019-03-23T01:09:46.296404",
+                "operationAmount": {"amount": "43318.34", "currency": {"name": "руб.", "code": "RUB"}},
+                "description": "Перевод со счета на счет",
+                "from": "Счет 44812258784861134719",
+                "to": "Счет 74489636417521191160",
+            },
+            {
+                "id": 895315941,
+                "state": "EXECUTED",
+                "date": "2018-08-19T04:27:37.904916",
+                "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод с карты на карту",
+                "from": "Visa Classic 6831982476737658",
+                "to": "Visa Platinum 8990922113665229",
+            },
+            {
+                "id": 594226727,
+                "state": "CANCELED",
+                "date": "2018-09-12T21:27:25.241689",
+                "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+                "description": "Перевод организации",
+                "from": "Visa Platinum 1246377376343588",
+                "to": "Счет 14211924144426031657",
+            },
+        ],
+        ["Перевод организации", "Перевод с карты на карту", "Перевод со счета на счет"],
+    )
+
+
+@pytest.fixture
+def pbo_not_description() -> tuple[list[dict], list[str]]:
+    return (
+        [
+            {
+                "id": 895315941,
+                "state": "EXECUTED",
+                "date": "2018-08-19T04:27:37.904916",
+                "operationAmount": {"amount": "56883.54", "currency": {"name": "USD", "code": "USD"}},
+                "from": "Visa Classic 6831982476737658",
+                "to": "Visa Platinum 8990922113665229",
+            },
+            {
+                "id": 594226727,
+                "state": "CANCELED",
+                "date": "2018-09-12T21:27:25.241689",
+                "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+                "from": "Visa Platinum 1246377376343588",
+                "to": "Счет 14211924144426031657",
+            },
+        ],
+        ["Перевод организации", "Перевод с карты на карту", "Перевод со счета на счет"],
+    )
+
+
+@pytest.fixture
+def pbo_not_operations() -> tuple[list[dict], list[str]]:
+    return (
+        [
+            {
+                "id": 939719570,
+                "state": "EXECUTED",
+                "date": "2018-06-30T02:08:58.425572",
+                "operationAmount": {"amount": "9824.07", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод организации",
+                "from": "Счет 75106830613657916952",
+                "to": "Счет 11776614605963066702",
+            },
+            {
+                "id": 142264268,
+                "state": "EXECUTED",
+                "date": "2019-04-04T23:20:05.206878",
+                "operationAmount": {"amount": "79114.93", "currency": {"name": "USD", "code": "USD"}},
+                "description": "Перевод со счета на счет",
+                "from": "Счет 19708645243227258542",
+                "to": "Счет 75651667383060284188",
+            },
+        ],
+        ["Перевод с карты на карту"],
+    )
+
+
+@pytest.fixture
+def main_valid_xlsx() -> list[dict]:
+    return [
+        {
+            "id": 1312600.0,
+            "state": "EXECUTED",
+            "date": "2021-03-25T15:41:59Z",
+            "amount": 34455.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 00001929651993491151",
+            "to": "Счет 94107008805088717279",
+            "description": "Перевод со счета на счет",
+        },
+        {
+            "id": 811203.0,
+            "state": "EXECUTED",
+            "date": "2021-09-15T11:34:48Z",
+            "amount": 32900.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 36602273830151626580",
+            "to": "Счет 61127622361324528517",
+            "description": "Перевод со счета на счет",
+        },
+        {
+            "id": 212502.0,
+            "state": "EXECUTED",
+            "date": "2021-12-03T14:07:06Z",
+            "amount": 21574.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 22246813624466689601",
+            "to": "Счет 60148056083328746527",
+            "description": "Перевод со счета на счет",
+        },
+        {
+            "id": 1938897.0,
+            "state": "EXECUTED",
+            "date": "2022-09-09T01:21:13Z",
+            "amount": 20083.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 86244850477007883319",
+            "to": "Счет 81698090448201122541",
+            "description": "Перевод со счета на счет",
+        },
+        {
+            "id": 3012438.0,
+            "state": "EXECUTED",
+            "date": "2023-01-26T05:06:25Z",
+            "amount": 26980.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 36880956803774247605",
+            "to": "Счет 57967135740972430525",
+            "description": "Перевод со счета на счет",
+        },
+        {
+            "id": 5051972.0,
+            "state": "EXECUTED",
+            "date": "2023-08-25T19:34:26Z",
+            "amount": 22833.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 57132829784776201423",
+            "to": "Счет 95605694496875862934",
+            "description": "Перевод со счета на счет",
+        },
+        {
+            "id": 1083434.0,
+            "state": "EXECUTED",
+            "date": "2023-08-28T08:03:34Z",
+            "amount": 27895.0,
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Счет 01411847038697732472",
+            "to": "Счет 67457374082601064845",
+            "description": "Перевод со счета на счет",
+        },
+    ]
+
+
+@pytest.fixture
+def main_valid_csv() -> list[dict]:
+    return [
+        {
+            "id": "4377488",
+            "state": "CANCELED",
+            "date": "2023-07-02T19:32:47Z",
+            "amount": "33265",
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Discover 6505902114235361",
+            "to": "Счет 35036089776755124501",
+            "description": "Перевод организации",
+        },
+        {
+            "id": "4718690",
+            "state": "CANCELED",
+            "date": "2021-10-22T18:06:24Z",
+            "amount": "24397",
+            "currency_name": "Ruble",
+            "currency_code": "RUB",
+            "from": "Mastercard 8555423564337493",
+            "to": "Счет 80979410926211688985",
+            "description": "Перевод организации",
+        },
+    ]
+
+
+@pytest.fixture
+def main_valid_json() -> list[dict]:
+    return [
+        {
+            "id": 200634844,
+            "state": "CANCELED",
+            "date": "2018-02-13T04:43:11.374324",
+            "operationAmount": {"amount": "42210.20", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Счет 33355011456314142963",
+            "to": "Счет 45735917297559088682",
+        },
+        {
+            "id": 121646999,
+            "state": "CANCELED",
+            "date": "2018-06-08T16:14:59.936274",
+            "operationAmount": {"amount": "91121.62", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Maestro 7552745726849311",
+            "to": "Счет 34799481846914116850",
+        },
+        {
+            "id": 594226727,
+            "state": "CANCELED",
+            "date": "2018-09-12T21:27:25.241689",
+            "operationAmount": {"amount": "67314.70", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Visa Platinum 1246377376343588",
+            "to": "Счет 14211924144426031657",
+        },
+        {
+            "id": 692008409,
+            "state": "CANCELED",
+            "date": "2019-02-14T17:38:09.910336",
+            "operationAmount": {"amount": "37044.95", "currency": {"name": "руб.", "code": "RUB"}},
+            "description": "Перевод организации",
+            "from": "Visa Classic 4610247282706784",
+            "to": "Счет 63229171188548882700",
+        },
+    ]

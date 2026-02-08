@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for src\widget.py: 100%</title>
+    <title>Coverage for src\widget.py: 95%</title>
     <link rel="icon" sizes="32x32" href="favicon_32_cb_58284776.png">
     <link rel="stylesheet" href="style_cb_42a278b0.css" type="text/css">
     <script src="coverage_html_cb_513c77fd.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>src&#8201;\&#8201;widget.py</b>:
-            <span class="pc_cov">100%</span>
+            <span class="pc_cov">95%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -55,17 +55,17 @@
         </aside>
         <h2>
             <span class="text">21 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">21<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">0<span class="text"> missing</span></button>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">20<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">1<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">3<span class="text"> excluded</span></button>
         </h2>
         <p class="text">
-            <a id="prevFileLink" class="nav" href="z_145eef247bfb46b6_processing_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a id="prevFileLink" class="nav" href="z_145eef247bfb46b6_utils_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="index.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.0">coverage.py v7.13.0</a>,
-            created at 2026-01-02 13:07 +0400
+            created at 2026-02-08 20:10 +0300
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"></button>
@@ -106,8 +106,8 @@
     <p class="pln"><span class="n"><a id="t24" href="#t24">24</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t25" href="#t25">25</a></span><span class="t"><span class="key">def</span> <span class="nam">get_date</span><span class="op">(</span><span class="nam">card_date</span><span class="op">:</span> <span class="nam">str</span><span class="op">)</span> <span class="op">-></span> <span class="nam">str</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t26" href="#t26">26</a></span><span class="t">    <span class="str">"""&#1060;&#1091;&#1085;&#1082;&#1094;&#1080;&#1103;, &#1080;&#1079;&#1084;&#1077;&#1085;&#1103;&#1102;&#1097;&#1072;&#1103; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090; &#1074;&#1099;&#1074;&#1086;&#1076;&#1072; &#1076;&#1072;&#1090;&#1099;"""</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">    <span class="key">if</span> <span class="nam">len</span><span class="op">(</span><span class="nam">card_date</span><span class="op">)</span> <span class="op">!=</span> <span class="num">26</span> <span class="key">or</span> <span class="key">not</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">int</span><span class="op">(</span><span class="nam">card_date</span><span class="op">[</span><span class="op">:</span><span class="num">4</span><span class="op">]</span> <span class="op">+</span> <span class="nam">card_date</span><span class="op">[</span><span class="num">5</span><span class="op">:</span><span class="num">7</span><span class="op">]</span> <span class="op">+</span> <span class="nam">card_date</span><span class="op">[</span><span class="num">8</span><span class="op">:</span><span class="num">10</span><span class="op">]</span><span class="op">)</span><span class="op">,</span> <span class="nam">int</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span><span class="str">"&#1053;&#1077;&#1087;&#1088;&#1072;&#1074;&#1080;&#1083;&#1100;&#1085;&#1099;&#1081; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090; &#1074;&#1074;&#1086;&#1076;&#1072; &#1076;&#1072;&#1090;&#1099;"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t27" href="#t27">27</a></span><span class="t">    <span class="key">if</span> <span class="key">not</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">int</span><span class="op">(</span><span class="nam">card_date</span><span class="op">[</span><span class="op">:</span><span class="num">4</span><span class="op">]</span> <span class="op">+</span> <span class="nam">card_date</span><span class="op">[</span><span class="num">5</span><span class="op">:</span><span class="num">7</span><span class="op">]</span> <span class="op">+</span> <span class="nam">card_date</span><span class="op">[</span><span class="num">8</span><span class="op">:</span><span class="num">10</span><span class="op">]</span><span class="op">)</span><span class="op">,</span> <span class="nam">int</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t28" href="#t28">28</a></span><span class="t">        <span class="key">raise</span> <span class="nam">ValueError</span><span class="op">(</span><span class="str">"&#1053;&#1077;&#1087;&#1088;&#1072;&#1074;&#1080;&#1083;&#1100;&#1085;&#1099;&#1081; &#1092;&#1086;&#1088;&#1084;&#1072;&#1090; &#1074;&#1074;&#1086;&#1076;&#1072; &#1076;&#1072;&#1090;&#1099;"</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t29" href="#t29">29</a></span><span class="t">    <span class="key">if</span> <span class="nam">int</span><span class="op">(</span><span class="nam">card_date</span><span class="op">[</span><span class="op">:</span><span class="num">4</span><span class="op">]</span><span class="op">)</span> <span class="op">></span> <span class="num">0</span> <span class="key">and</span> <span class="num">0</span> <span class="op">&lt;</span> <span class="nam">int</span><span class="op">(</span><span class="nam">card_date</span><span class="op">[</span><span class="num">5</span><span class="op">:</span><span class="num">7</span><span class="op">]</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="num">12</span> <span class="key">and</span> <span class="num">0</span> <span class="op">&lt;</span> <span class="nam">int</span><span class="op">(</span><span class="nam">card_date</span><span class="op">[</span><span class="num">8</span><span class="op">:</span><span class="num">10</span><span class="op">]</span><span class="op">)</span> <span class="op">&lt;=</span> <span class="num">31</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t30" href="#t30">30</a></span><span class="t">        <span class="key">return</span> <span class="fst">f"</span><span class="op">{</span><span class="nam">card_date</span><span class="op">[</span><span class="num">8</span><span class="op">:</span><span class="num">10</span><span class="op">]</span><span class="op">}</span><span class="fst">.</span><span class="op">{</span><span class="nam">card_date</span><span class="op">[</span><span class="num">5</span><span class="op">:</span><span class="num">7</span><span class="op">]</span><span class="op">}</span><span class="fst">.</span><span class="op">{</span><span class="nam">card_date</span><span class="op">[</span><span class="op">:</span><span class="num">4</span><span class="op">]</span><span class="op">}</span><span class="fst">"</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t31" href="#t31">31</a></span><span class="t">    <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -121,12 +121,12 @@
 <footer>
     <div class="content">
         <p>
-            <a class="nav" href="z_145eef247bfb46b6_processing_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a class="nav" href="z_145eef247bfb46b6_utils_py.html">&#xab; prev</a> &nbsp; &nbsp;
             <a class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a class="nav" href="index.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
             <a class="nav" href="https://coverage.readthedocs.io/en/7.13.0">coverage.py v7.13.0</a>,
-            created at 2026-01-02 13:07 +0400
+            created at 2026-02-08 20:10 +0300
         </p>
     </div>
 </footer>

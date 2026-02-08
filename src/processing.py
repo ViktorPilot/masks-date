@@ -1,4 +1,7 @@
-def filter_by_state(list_of_dict: list[dict], state: str = "EXECUTED") -> list[dict]:
+from typing import Any
+
+
+def filter_by_state(list_of_dict: Any, state: str = "EXECUTED") -> list[dict]:
     """Функция, возвращающая список словарей с заданным статусом"""
     return [dict_from_list for dict_from_list in list_of_dict if dict_from_list.get("state") == state]
 

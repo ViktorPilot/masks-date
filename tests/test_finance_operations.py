@@ -75,7 +75,7 @@ def test_get_operation_excel_not_found(mock_df: Mock, valid_get_operation_excel:
 @patch("pandas.read_excel")
 def test_get_operation_excel_valid(mock_df: Mock, valid_get_operation_excel: list[dict]) -> None:
     """Тестирование работы функции, конвертирующей файл с транзакциями .xlsx в список при стандартных значениях"""
-    mock_df.return_value.to_dict.return_value = valid_get_operation_excel
+    mock_df.return_value.fillna.return_value.to_dict.return_value = valid_get_operation_excel
     assert get_operation_excel(os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx")) == [
         {
             "id": 650703.0,
@@ -105,5 +105,5 @@ def test_get_operation_excel_valid(mock_df: Mock, valid_get_operation_excel: lis
 @patch("pandas.read_excel")
 def test_get_operation_excel_empty(mock_df: Mock) -> None:
     """Тестирование работы функции, конвертирующей файл с транзакциями .xlsx в список при отсутствии транзакций"""
-    mock_df.return_value.to_dict.return_value = []
+    mock_df.return_value.fillna.return_value.to_dict.return_value = []
     assert get_operation_excel(os.path.join(PATH_TO_DIR, "data/transactions_excel.xlsx")) == []

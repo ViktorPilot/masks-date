@@ -81,19 +81,6 @@ def test_get_date_positive(card_date: str, result: str) -> None:
 @pytest.mark.parametrize(
     "card_date",
     [
-        "2024-03-11T02:26:18.67",
-        "2027-12-31T02:26:18.67140722",
-    ],
-)
-def test_get_date_short_large_format(card_date: str) -> None:
-    """Проверка работы функции, вызывающей исключение при вводе значений с нестандартным количеством символов"""
-    with pytest.raises(ValueError):
-        widget.get_date(card_date)
-
-
-@pytest.mark.parametrize(
-    "card_date",
-    [
         "2024-03-32T02:26:18.671407",
         "2024-13-11T02:26:18.671407",
     ],

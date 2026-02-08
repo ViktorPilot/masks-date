@@ -3,6 +3,7 @@ import logging
 import os
 
 PATH_TO_ROOT = os.path.dirname(os.path.dirname(__file__))
+path_to_operation = os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/operations.json"))
 
 if not os.path.exists(os.path.join(PATH_TO_ROOT, "logs")):
     os.makedirs(os.path.join(PATH_TO_ROOT, "logs"))
@@ -35,4 +36,4 @@ def get_dict_transactions(path_to_operations: str) -> list[None | dict]:
 
 
 if __name__ == "__main__":  # pragma: no cover
-    print(get_dict_transactions(os.path.abspath(os.path.join(os.path.dirname(__file__), "../data/operations.json"))))
+    print(get_dict_transactions(path_to_operation))

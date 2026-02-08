@@ -24,7 +24,7 @@ def mask_account_card(data_card: str) -> str:
 
 def get_date(card_date: str) -> str:
     """Функция, изменяющая формат вывода даты"""
-    if len(card_date) != 26 or not isinstance(int(card_date[:4] + card_date[5:7] + card_date[8:10]), int):
+    if not isinstance(int(card_date[:4] + card_date[5:7] + card_date[8:10]), int):
         raise ValueError("Неправильный формат ввода даты")
     if int(card_date[:4]) > 0 and 0 < int(card_date[5:7]) <= 12 and 0 < int(card_date[8:10]) <= 31:
         return f"{card_date[8:10]}.{card_date[5:7]}.{card_date[:4]}"
